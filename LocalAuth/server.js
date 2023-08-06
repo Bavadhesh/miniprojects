@@ -62,8 +62,9 @@ app.post('/login',checkNotAuthenticated,passport.authenticate('local',{
 }))
 
 app.delete('/logout', (req, res) => {
-    req.logOut()
-    res.redirect('/login')
+    req.logout(() => {
+        res.redirect('/login');
+      })
   })
 
 function checkAuthenticated(req,res,next){
